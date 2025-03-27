@@ -7,11 +7,12 @@
     <title>NonTextControlContrast</title>
     <style>
 
-        ._inputElement {
-            margin: 10px 0 10px 0;
-            padding: 10px;
-            color: #969d9f;
-        }
+         input {
+                border: 5px solid #e5e5e5;
+                outline: none;
+                border: 5px solid #e5e5e5;
+                outline: none;
+            }
 
     </style>
 </head>
@@ -19,9 +20,9 @@
 <body>
 
     <!-- Violation Cases -->
-        <p>Input Element</p>
-        <input class="_inputElement" type="text" name="q" value="" aria-label="Enter Keyword or Item No."
-            autocomplete="off">
+       <label for="_inputElement">Non text input element</label>
+        <input id="_inputElement" type="text" name="q" value="" style="margin: 10px 0 10px 0; padding: 10px; border: hidden; color: #969d9f;" aria-label="Enter Keyword or Item No." autocomplete="off"><label for="_inputElement">Non text input element</label>
+        <input id="_inputElement" type="text" name="q" value="" style="margin: 10px 0 10px 0; padding: 10px; border: hidden; color: #969d9f;" aria-label="Enter Keyword or Item No." autocomplete="off">
 
 </body>
 
