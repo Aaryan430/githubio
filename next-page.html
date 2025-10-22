@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Page - Content Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+        
+        .welcome-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .content-section {
+            margin: 25px 0;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        
+        .user-input-display {
+            background-color: #e8f5e8;
+            border: 2px solid #28a745;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .navigation {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .back-button:hover {
+            background-color: #545b62;
+            transform: translateY(-2px);
+        }
+        
+        .refresh-button {
+            background-color: #17a2b8;
+            color: white;
+        }
+        
+        .refresh-button:hover {
+            background-color: #138496;
+            transform: translateY(-2px);
+        }
+        
+        .info-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            background: #e3f2fd;
+            margin: 10px 0;
+            padding: 12px;
+            border-left: 4px solid #2196f3;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .timestamp {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Next Page!</h1>
+        
+        <div class="welcome-section">
+            <h2>🎉 Congratulations!</h2>
+            <p>You successfully navigated from the previous page. This demonstrates how content can be loaded with delays and then transition between pages seamlessly.</p>
+        </div>
+        
+        <div class="user-input-display">
+            <strong>Your Input from Previous Page:</strong>
+            <div id="userInput" style="font-size: 18px; margin-top: 10px; color: #155724;">
+                Loading your input...
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h3>📝 About This Page</h3>
+            <p>This page contains various text content to demonstrate navigation between pages. The previous page had a delayed loading mechanism (5-10 seconds) before showing the input form, and now you're viewing the result page.</p>
+        </div>
+        
+        <div class="content-section">
+            <h3>🌟 Features Demonstrated</h3>
+            <ul class="feature-list">
+                <li><strong>Delayed Content Loading:</strong> The first page simulated loading time with a spinner and countdown</li>
+                <li><strong>User Input Handling:</strong> Form input was captured and passed between pages</li>
+                <li><strong>Page Navigation:</strong> Smooth transition from one page to another</li>
+                <li><strong>Data Persistence:</strong> User input is preserved using localStorage</li>
+                <li><strong>Responsive Design:</strong> Clean, modern UI that works on different screen sizes</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <strong>💡 Technical Note:</strong> This implementation uses localStorage to pass data between pages, which is a common pattern for client-side applications. In real-world scenarios, you might use URL parameters, session storage, or server-side sessions.
+        </div>
+        
+        <div class="content-section">
+            <h3>📊 Sample Data Content</h3>
+            <p>Here's some sample text content that demonstrates what a typical content page might contain:</p>
+            
+            <blockquote style="border-left: 4px solid #ccc; margin: 20px 0; padding-left: 20px; font-style: italic; color: #555;">
+                "The best way to predict the future is to create it. Technology and user experience design work hand in hand to build applications that not only function well but also provide delightful interactions for users."
+            </blockquote>
+            
+            <p>This page serves as an example of:</p>
+            <ul>
+                <li>Rich text content with various formatting</li>
+                <li>Multiple sections with different styling</li>
+                <li>Interactive elements (buttons)</li>
+                <li>Dynamic content (user input display)</li>
+                <li>Responsive layout design</li>
+            </ul>
+        </div>
+        
+        <div class="navigation">
+            <button class="back-button" onclick="goBack()">← Go Back to Loading Page</button>
+            <button class="refresh-button" onclick="refreshPage()">🔄 Refresh This Page</button>
+        </div>
+        
+        <div class="timestamp">
+            Page loaded at: <span id="loadTime"></span>
+        </div>
+    </div>
+
+    <script>
+        function displayUserInput() {
+            const userInput = localStorage.getItem('userInput');
+            const inputDisplay = document.getElementById('userInput');
+            
+            if (userInput && userInput.trim()) {
+                inputDisplay.textContent = `"${userInput}"`;
+                inputDisplay.style.color = '#155724';
+            } else {
+                inputDisplay.textContent = 'No input was provided on the previous page';
+                inputDisplay.style.color = '#856404';
+            }
+        }
+        
+        function displayLoadTime() {
+            const now = new Date().toLocaleTimeString();
+            document.getElementById('loadTime').textContent = now;
+        }
+        
+        function goBack() {
+            // Clear the stored input and go back
+            window.location.href = 'pageload.html';
+        }
+        
+        function refreshPage() {
+            window.location.reload();
+        }
+        
+        // Initialize page when it loads
+        window.addEventListener('load', () => {
+            displayUserInput();
+            displayLoadTime();
+        });
+    </script>
+</body>
+</html>
